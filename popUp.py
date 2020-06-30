@@ -19,6 +19,7 @@ class popUp:
         self.window = tk.Tk()
 
     #-------------------------------------------------------------------------------------------------------
+    # addEntry(): appends an entry box to eList data member, along with associated StringVar() to eVars list
     #-------------------------------------------------------------------------------------------------------
 
     def addEntry(self):
@@ -27,18 +28,22 @@ class popUp:
         self.eVars.append(toUse)
 
     #-------------------------------------------------------------------------------------------------------
+    # addLabel(): appends Label to lList, using 'text' parameter as text
     #-------------------------------------------------------------------------------------------------------
 
     def addLabel(self, text):
         self.lList.append(Label(self.window, text = text))
 
     #-------------------------------------------------------------------------------------------------------
+    # addButton(): appends Button to bList, using 'text' parameter as text and 'command' parameter as command, with
+    # optional 'arg' command for command with necessary arguments (unused so far)
     #-------------------------------------------------------------------------------------------------------
 
     def addButton(self, text, command, arg = None):
         self.bList.append(Button(self.window, text = text, command = command))
 
     #-------------------------------------------------------------------------------------------------------
+    # addScale(): appends horizontal slidebar scale to sList, with 'to' and 'from_' parameters determining range
     #-------------------------------------------------------------------------------------------------------
 
     def addScale(self, from_, to):
@@ -47,6 +52,8 @@ class popUp:
         self.sVars.append(toUse)
 
     #-------------------------------------------------------------------------------------------------------
+    # run(): creates tkinter window, adds all widgets stored in list data members using 'grid()' command
+    # labels in col 0, entry boxes AND/OR slidebars in col 1, buttons in col 2
     #-------------------------------------------------------------------------------------------------------
 
     def run(self):
