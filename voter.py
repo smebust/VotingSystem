@@ -6,7 +6,8 @@ import popUp as pUp
 
 #-------------------------------------------------------------------------------------------------------------------
 # Voter class acts as instances of voter, each one containing simple data about voter info and preferences
-#
+# initiated with string name for voter name, string eType for desired election type, and dictionary prefDict 
+# representing cadidates and voter preference for each candidate
 #-------------------------------------------------------------------------------------------------------------------
 
 class Voter:

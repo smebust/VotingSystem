@@ -5,7 +5,7 @@ import voter as vtr
 
 #-------------------------------------------------------------------------------------------------------------------
 # popUp class handles creation of tkinter windows
-#creates the main ballot box window, as well as all windows created for popup messages
+# creates the main ballot box window, as well as all windows created for popup messages
 #-------------------------------------------------------------------------------------------------------------------
 
 class popUp:

@@ -6,7 +6,7 @@ import voter as vtr
 
 #-------------------------------------------------------------------------------------------------------------------
 # Ballot class handles voter data input, runs election scripts and outputs winner
-#
+# initiated with list of names as candidates, along with string representing desired election type
 #-------------------------------------------------------------------------------------------------------------------
 class Ballot:
     def __init__(self, names, etype):
@@ -17,6 +17,7 @@ class Ballot:
         self.ballot = pUp.popUp()
 
     #-------------------------------------------------------------------------------------------------------
+    # Uses popUp class to create ballot window, adding entry boxes for voter data collection
     #-------------------------------------------------------------------------------------------------------
 
     def make_ballot(self):
@@ -43,10 +44,11 @@ class Ballot:
         self.ballot.run()
 
     #-------------------------------------------------------------------------------------------------------
+    # getRep(): this method makes use of global list 'voters[]' to generate voter report
+    # Creates a tkinter frame that acts as a pop-up window which lists each voter, along with their ordered preferences 
     #-------------------------------------------------------------------------------------------------------
 
-    #Generate Report: this method makes use of global list 'voters[]' 
-    #Creates a tkinter frame that acts as a pop-up window which lists each voter, along with their ordered preferences 
+    
     def genRep(self):
         repBox = pUp.popUp()
         for i in self.voters:
@@ -54,6 +56,9 @@ class Ballot:
         repBox.run()
     
     #-------------------------------------------------------------------------------------------------------
+    # saveRatings(): called via button push, saves current SCALE entries as voter data in instance
+    # of Voter() class, stores voter in 'voters' data member list
+    # Used for rating system election
     #-------------------------------------------------------------------------------------------------------
 
     def saveRatings(self):
@@ -75,7 +80,8 @@ class Ballot:
         saved.run()
             
     #-------------------------------------------------------------------------------------------------------
-    #below function serves to save the current entries as an instance of the Voter class
+    # saveRanks(): save the current entry-box entries as an instance of the Voter class
+    # used for Ranked-Choice election
     #-------------------------------------------------------------------------------------------------------
 
     def saveRanks(self):
@@ -126,8 +132,8 @@ class Ballot:
         
 
     #-------------------------------------------------------------------------------------------------------
-    #show() method creates a dictionary, keys being names and values being a list of the ranking of the
-    #corresponding name from each voter.
+    #show(): creates a dictionary, keys being names and values being a list of the ranking of the
+    #corresponding name from each voter. (currently unused)
     #-------------------------------------------------------------------------------------------------------
 
     def show(self):
@@ -141,6 +147,7 @@ class Ballot:
         print(resultDict)
 
     #-------------------------------------------------------------------------------------------------------
+    # winner(): called when program determines a winner, creates winner popUp box using 'wName' string as label
     #-------------------------------------------------------------------------------------------------------
 
     def winner(self, wName):
@@ -151,14 +158,14 @@ class Ballot:
         exit()
 
     #-------------------------------------------------------------------------------------------------------
+    # rankCElect(): runs ranked choice election by comparing voter ranks and recursively calling self until
+    # a winner is determined (must have 50% of vote)
     #-------------------------------------------------------------------------------------------------------
 
     def rankCElect(self):
         #get votes from voters list
         fChoice = self.getVotes()
         print(' '.join(fChoice))
-
-        
 
         #Dictionary containing only candidates who received votes as keys, along with vote count as values
         elDict = {}
@@ -181,6 +188,8 @@ class Ballot:
                 self.rankCElect()        
 
     #-------------------------------------------------------------------------------------------------------
+    # ratingElect(): runs rating system election, determines winner by adding ratings between voters of all candidates,
+    # candidate with highest overall rating wins
     #-------------------------------------------------------------------------------------------------------
     def ratingElect(self):
         allRDict = {}
@@ -215,6 +224,7 @@ class Ballot:
 
 
     #-------------------------------------------------------------------------------------------------------
+    # runElection(): calls correct election method based on input election type
     #-------------------------------------------------------------------------------------------------------
     
     def runElection(self):
@@ -225,8 +235,8 @@ class Ballot:
         
         
     #-------------------------------------------------------------------------------------------------------
-    #Performs reordering operation on voter list
-    #Used in ranked choice voting system
+    #changeVotes(): used for ranked choice voting system, performs reordering operation on voter list
+    # elDict: Dictionary containing only candidates who received votes as keys, along with vote count as values
     #-------------------------------------------------------------------------------------------------------
 
     def changeVotes(self, elDict):
@@ -256,6 +266,7 @@ class Ballot:
                 vtr.resetVote()
 
     #-------------------------------------------------------------------------------------------------------
+    # getVotes: returns a list containing the value of the 'vote' data member for each voter in 'voters'
     #-------------------------------------------------------------------------------------------------------
 
     def getVotes(self):

@@ -6,7 +6,7 @@ import popUp as pUp
 import voter as vtr
 
 #-------------------------------------------------------------------------------------------------------
-#Remaining script used to run election
+# Master script used to run election
 #-------------------------------------------------------------------------------------------------------
 
 def setup():
